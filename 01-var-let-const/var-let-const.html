@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>var let and const</title>
+  </head>
+  <body>
+    <script>
+      // var variables can be change
+      // you can declare same name variables twice
+      var width = 200;
+      console.log(width);
+      width = 100;
+      console.log(width);
+
+      //var scoping is global or function scope
+      function getWidth() {
+        //here width is local to this function and not available in global context
+        var width = 300;
+        console.log(width);
+      }
+      getWidth();
+
+      var age = 30;
+      if (age > 12) {
+        var dogYears = age * 6;
+        console.log(`you are ${dogYears} dog years old! `);
+      }
+      //this var is not temporary what we want, but now its leaked into global context
+      console.log(` var dogYears ${dogYears} still available!!`);
+
+      // let and const helps to solve these problems with var
+      //both are block scoped and not hoisted like var
+      //let can be reassigned but not const
+
+      const newAge = 100;
+      if (newAge >= 100) {
+        let message = `you are the centorion, congrats on ${newAge} age mark`;
+
+        console.log(message);
+      }
+
+      // console.log(message); reference error block scoped defination
+    </script>
+  </body>
+</html>

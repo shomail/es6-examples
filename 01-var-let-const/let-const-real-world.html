@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>let const real world</title>
+  </head>
+  <body>
+    <script>
+      // let and const useful when needs to create block scope
+      // no need for IIFE pattern
+      //IIFE helps creating private scope for our programs
+      // and prevent vars leaking into global scope
+      (function() {
+        var name = 'shomail';
+        console.log(name + ' from IIFE');
+      })();
+
+      // when you dont want to change accidently use const
+      //and use {} to create scope same as  IIFE
+      {
+        const myName = 'shomail';
+        console.log(myName);
+      }
+
+      //fixing for loop
+
+      for (var i = 0; i < 10; i++) {
+        console.log(i);
+        setTimeout(() => {
+          console.log(`number is ${i} var`);
+        }, 1000);
+      }
+      //here for loop is finished immediatly
+      //but settimeout run after one sec and now it has access
+      //to global i value and it uses that
+      //now i is in global
+
+      for (let j = 0; j < 10; j++) {
+        // console.log(j);
+        setTimeout(() => {
+          console.log(`number is ${j} by let`);
+        }, 1000);
+      }
+
+      //::temporal dead zone::
+      console.error('TEMPORAL DEAD ZONE EXAMPLE');
+      var pizza = 'deep dish';
+      console.log(pizza);
+      //if we use var after defining its fine
+      //but if we use it before it is defined because of hoisting
+      //we get undefined with var
+      console.log(pasta);
+      var pasta = 'yummy pasta';
+
+      //in case of const and let you get reference error
+      //if you try to use it before defining hence no TDZ
+      // this is temporal dead zone; meaning when you are accessing the variable
+      //defined by let and const and its defined below
+      //all the space between it is temporal dead zone
+    </script>
+  </body>
+</html>
