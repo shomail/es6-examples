@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Arrow functions</title>
+</head>
+<body>
+  <script>
+    // arrow functions are much shorter
+    // they have implicit returns, means you dont need to write return
+    // doesn't rebind the value of this when you use it inside another function
+    //only one parameter no need for parens()
+    //if body is only one line no need for {} and return that's implicit return
+    //explicit is when you return yourself
+    //if no arguments we need blank ()
+    //they are ALWAYS anonymous functions, means function without name !
+    //benefit of named function is if you have an error, you can see the name of function in stack trace causing problem
+    //but you can store them in variable
+
+
+    const names = ['shomail', 'sherry', 'safeer'];
+    
+    const fullNameRegular = names.map(function(name) {
+      return name + ' tahir';
+    });
+
+    console.log('Regular function output', fullNameRegular);
+
+    const fullNamesArrow = names.map(name => `${name} tahir`);
+
+    console.log('ARROW function output', fullNamesArrow);
+
+    //arrow function declaration but it's an anonymous function
+
+    const sayMyName = name => console.log(name);
+
+    sayMyName('SHOMAIL BIN TAHIR');
+
+
+  </script>
+</body>
+</html>

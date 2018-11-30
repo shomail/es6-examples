@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Arrow functions examples</title>
+</head>
+<body>
+  <script>
+    console.log('ARROW FUNCTIONS EXAMPLES');
+
+    const race = '100m Dash';
+    const winners = ['Hunter', 'Inder', 'Paul']
+    //wrap () around object {} if you want to return obj implicitly
+    //that's implicit return with object literal
+    //race:race you can write race only in es6
+    const win = winners.map((winner, i) => ({
+      name: winner,
+      race,
+      position: i + 1
+    }))
+    console.table(win);
+
+    const ages = [23, 65, 45, 27, 101, 99, 85, 33, 30, 29];
+
+    const old = ages.filter(age => age >= 60);
+
+    console.log('OLD PEOPLE FILTERED', old);
+  </script>
+</body>
+</html>

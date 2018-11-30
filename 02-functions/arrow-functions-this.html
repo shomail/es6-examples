@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Arrow functions - this</title>
+</head>
+<style>
+    .wrap {
+      min-height: 100vh;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      font-family: sans-serif;
+      font-weight: 100;
+      color:white;
+    }
+    .box {
+      background:black url(https://unsplash.it/1500/1500?image=560&blur=0.5) center fixed no-repeat;
+      width:50px;
+      height:50px;
+      padding:50px;
+      transition: width 0.2s, height 0.6s;
+      position: relative;
+    }
+    .box.opening {
+      width:500px;
+      height:500px;
+    }
+    .box h2 {
+      position: absolute;
+      width:100%;
+      font-size: 100px;
+      transform:translateX(-200%);
+      transition: all 0.5s;
+      top:0;
+    }
+    .box p {
+      position: absolute;
+      width:100%;
+      transform:translateX(200%);
+      transition: all 0.5s;
+      bottom:0;
+    }
+    .box.open > * {
+      transform:translateX(0%);
+    }
+    </style>
+<body>
+  <div class="wrap">
+    <div class="box">
+      <h2>Shomail</h2>
+      <p class="social">@shomail</p>
+    </div>
+  </div>
+  <script>
+    //in arrow functions this keyword do not re-bound
+    const box = document.querySelector('.box');
+
+    //if we use arrow function here value of this is window
+    //it's value not bound to the object we clicked on, it's inherited from parent scope
+    //can't use arrow func in every case
+    //if this needs to reference to actual object that calls the func use regular one
+    box.addEventListener('click', function() {
+      let first = 'opening';
+      let second = 'open';
+
+      if(this.classList.contains(first)) {
+        //switching variables with es6
+        [first, second] = [second, first];
+      }
+
+      this.classList.toggle(first);
+      //here if we use regular function this will be window object
+      //so we use arrow func so this keyword refers to the parent scope
+      //regular func is not bound to any obj so in this case it refers to window obj
+      //one workaround with regular func is to defice self vaiable in parent and store this in it and then use self inside the child function
+      setTimeout(() => {
+        this.classList.toggle(second);
+      }, 500);
+    })
+  </script>
+</body>
+</html>

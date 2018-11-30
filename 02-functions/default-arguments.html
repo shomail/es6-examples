@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Default Function Arguments</title>
+</head>
+<body>
+  <script>
+    function calcBill(total, tax = 0.25, tip = 0.15) {
+      //pre es6 way of defining default args
+      // tax = tax || 0.25;
+      // tip = tip || 0.15;
+
+      return total + (total * tax) + (total * tip);
+    }
+
+    const totalBill = calcBill(100);
+
+    //leaving some args empty
+
+    //right now func args are order dependent but with destructuring we can pass them in any order
+
+    const totalBillHugeTip = calcBill(100, undefined, 0.25);
+
+    console.log(totalBill, ' $ with normal bill, tax and tip');
+
+    console.log(totalBillHugeTip, ' $ with normal bill, defaul tax and huge tip');
+  </script>
+</body>
+</html>
