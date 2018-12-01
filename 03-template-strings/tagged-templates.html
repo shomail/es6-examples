@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Tagged Templates</title>
+    <style>
+      abbr {
+        border-bottom: 1px dotted grey;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container"><div class="bio"></div></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/0.8.2/purify.min.js"></script>
+    <script>
+      //tagged templates example
+      //here string is tagged with function name
+      //strings array will hold all the strings part and values array will hold all the values
+      //strings array will always be one longer than actual values
+      function highlight(strings, ...values) {
+        let str = '';
+        strings.forEach((string, idx) => {
+          str += string + (values[idx] || '');
+        });
+        return str;
+      }
+      const name = 'shomail';
+      const age = '10';
+      const message = highlight`${name} is ${age} years old!`;
+      console.log(message);
+
+      //another example...
+
+      const dict = {
+        HTML: 'HyperText Markup Language',
+        JS: 'JavaScript'
+      };
+
+      function addAbreviation(strings, ...values) {
+        const abbr = values.map(value => {
+          if (dict[value]) {
+            return `<abbr title="${dict[value]}">${value}</abbr>`;
+          }
+          return value;
+        });
+
+        return strings.reduce((sentance, string, i) => {
+          return `${sentance}${string}${abbr[i] || ''}`;
+        }, '');
+      }
+
+      const firstName = 'Shomail';
+      const middleName = 'Bin';
+      const lastName = 'Tahir';
+
+      const sentance = addAbreviation`Hello, my name is ${firstName} ${middleName} ${lastName}, and I love to code in ${'HTML'} and ${'JS'}`;
+
+      const container = document.querySelector('.container');
+      const elem = document.createElement('p');
+      elem.innerHTML = sentance;
+      console.log(elem);
+      container.insertAdjacentElement('beforeend', elem);
+
+      //data sanitize example
+
+      function sanitize(strings, ...values) {
+        const dirty = strings.reduce((prev, next, i) => `${prev}${next}${values[i] || ''}`, '');
+        return DOMPurify.sanitize(dirty);
+      }
+      const first = 'Shomail';
+      const aboutMe = `I love to do evil <img src="http://unsplash.it/100/100?random" onload="alert('you got hacked');" />`;
+      const html = sanitize`
+          <h3>${first}</h3>
+          <p>${aboutMe}</p>
+        `;
+      const bio = document.querySelector('.bio');
+      bio.innerHTML = html;
+    </script>
+  </body>
+</html>
