@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>String Methods</title>
+  </head>
+  <body>
+    <script>
+      const course = 'RFB2';
+      const flightNumber = '20-AC2018-jz';
+      const accountNumber = '825242631RT0001';
+
+      const make = 'BMW';
+      const model = 'x5';
+      const color = 'Royal Blue';
+
+      //.startsWith() a case-sensitive string matching from the start by default, returns boolean
+      console.log(`Does course starts with RFB? ${course.startsWith('RFB')}`);
+
+      //to skip chars with .startWith() pass number of characters you want to skip as 2nd arg
+      console.log(`Flight start with AC? ${flightNumber.startsWith('AC', 3)}`);
+
+      //.endsWith() is the opposite of .startsWith()
+      console.log(`Flights ends in jz ${flightNumber.endsWith('jz')}`);
+
+      //.endsWith() while ignoring last n cahrs
+      console.log(`Account ends with RT? ${accountNumber.endsWith('RT', 11)}`);
+
+      //.includes() check for string occurance anywhere in string;
+      console.log(`flight number includes AC anywhere? ${flightNumber.includes('AC')}`);
+
+      //.repeat() will repeat string n times..
+      function leftPad(str, length = 20) {
+        return `-> ${' '.repeat(length - str.length)}${str}`;
+      }
+
+      console.log(leftPad(make));
+      console.log(leftPad(model));
+      console.log(leftPad(color));
+    </script>
+  </body>
+</html>
