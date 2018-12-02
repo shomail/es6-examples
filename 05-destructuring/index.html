@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Destructuring</title>
+  </head>
+  <body>
+    <script>
+      //Destructuring means to extract values into variables from arrays, objects, maps and sets
+
+      //obj dest.. example
+
+      const person = {
+        first: 'shomail',
+        last: 'tahir',
+        country: 'DK',
+        city: 'CPH',
+        twitter: '@tahir'
+      };
+      //that's not a block but dest.. syntax
+      const { first, last } = person;
+
+      console.log(`person details destructured from obj, first: ${first}, last: ${last}`);
+
+      //nested data example:
+
+      const dev = {
+        first: 'shomail',
+        last: 'tahir',
+        address: {
+          home: '50',
+          street: 'svenstrupvej',
+          city: 'vallensbaek',
+          post: '2665'
+        },
+        links: {
+          portfolio: {
+            github: 'github.com/shomail'
+          },
+          social: {
+            linkedin: 'linkedin/shomail',
+            twitter: 'twitter/shomail',
+            facebook: 'facebook/shomail'
+          }
+        }
+      };
+
+      const { twitter, facebook, linkedin } = dev.links.social;
+
+      console.log(twitter, facebook, linkedin);
+
+      //renaming variable names in destructuring
+
+      const { twitter: tweet, facebook: fb, linkedin: link } = dev.links.social;
+
+      console.log(tweet, fb, link);
+
+      //setting default example
+
+      const settings = {
+        width: 300,
+        color: 'black'
+      }; //height and font size also required
+
+      const { width = 100, height = 300, color = 'black', fontSize = '16' } = settings;
+
+      console.log(width, height, color, fontSize);
+
+      //object destructuring all in one, variable renaming & default values :D
+      const { w: widthValue = 400, h: heightValue = 400 } = { w: 600 };
+      console.log(widthValue, heightValue);
+
+      //ARRAY DESTRUCTURING EXAMPLES
+      //we use { } for object dest.. and [ ] for array dest..
+
+      const details = ['Shomail', 1988, 'shomail.github.io'];
+
+      const [name, dob, website] = details;
+
+      console.log(name, dob, website);
+
+      //handy trick to convert string to array and destructure at the same time...
+
+      const data = 'sports,cricket,bat,23,bla,blah';
+
+      const [category, subCategory, item, itemId] = data.split(',');
+
+      console.log(category, subCategory, item, itemId);
+
+      //array destructuring with rest operator example
+
+      const team = ['shomail', 'sherry', 'safeer', 'mustabshir', 'yawar'];
+
+      const [captain, assistant, ...players] = team;
+      //here ... means rest of the items in the array should be grouped into this single variable
+      console.log(captain, assistant, players);
+
+      // swaping variable values with destructuring
+
+      let inRing = 'Hulk Hogan';
+      let onSide = 'The Rock';
+
+      //previous way of doing switching
+      //   let tmp = inRing;
+      //   inRing = onSide;
+      //   onSide = tmp;
+      console.log(inRing, onSide);
+      //es6 way
+      [inRing, onSide] = [onSide, inRing];
+
+      console.log(inRing, onSide);
+
+      //destructuring in functions
+      function convertCurrency(amount) {
+        const converted = {
+          USD: amount * 0.76,
+          GBP: amount * 0.53,
+          EUR: amount * 13.3,
+          AUD: amount * 1.01
+        };
+        return converted;
+      }
+
+      const hundo = convertCurrency(100);
+      //you can destructure return value straight away, and order is not necessary
+      const { GBP, EUR, AUD, USD } = convertCurrency(200);
+      console.log(hundo);
+      console.log(USD, GBP, EUR, AUD);
+      //you can only destructure what you need, no need for all the values
+      const { GBP: pounds, USD: dollars } = convertCurrency(300);
+      console.log(pounds, dollars);
+
+      //default named arguments in functions with the help of destructuring
+      //to make these args order independent we can wrap them in {},
+      //now when we pass them as an object function is going to destruct them and points them to variables
+      //if you do not want to pass any value and leave all args to default you need to set args obj default to empty {}
+      function tipCalc({ total = 100, tip = 0.15, tax = 0.13 } = {}) {
+        return total + total * tip + total * tax;
+      }
+
+      console.log(`Your total is ${tipCalc({ tip: 0.5, total: 100 })}`);
+      //
+      console.log(`our default bill is: ${tipCalc()}`);
+    </script>
+  </body>
+</html>
