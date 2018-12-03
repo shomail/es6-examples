@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Looping and Iterables</title>
+</head>
+<body>
+<script>
+  Array.prototype.shuffle = function() {
+     var i = this.length, j, temp;
+     if ( i == 0 ) return this;
+     while ( --i ) {
+      j = Math.floor( Math.random() * ( i + 1 ) );
+      temp = this[i];
+      this[i] = this[j];
+      this[j] = temp;
+    }
+    return this;
+  };
+  //Iterable is anything which can be looped over
+  // Array, String, Map, Set
+  const cuts = ['Chuck', 'Brisket', 'Shank', 'Short Rib'];
+
+  // For loop example
+  //it works fine but the downside is this confusing syntax
+  for (let i = 0; i < cuts.length; i++) {
+    console.log(`cuts in for loop: ${i} - ${cuts[i]}`);
+  }
+
+  //forEach example
+  //downside is you cannot abort and skip one in this loop
+  //break continue don't work in forEach
+  //it's simple and readable good for most cases but not when skip required
+  cuts.forEach(cut => console.log(`cuts from forEach loop: ${cut}`));
+
+  //for in example
+  //it only gives us the index not the original value
+  //it iterates through everything even on prototype object
+  //if we add any property or method on it it will loop over it
+  for (let index in cuts) {
+    console.log(`cuts from for in loop: ${cuts[index]}`);
+  }
+
+  //for of example
+  //gives us best of all three of loops
+  //it's good for any type of data except object
+  //even though there is method in in prototype obj it's not reading it
+  for(const cut of cuts) {
+    if(cut === 'Brisket') {
+      continue;
+    }
+    if(cut === 'Shank') {
+      break;
+    }
+    console.log(`cuts from for of loop: ${cut}`);
+  }
+</script>
+</body>
+</html>
