@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Object literal Upgrades ♨️</title>
+</head>
+<body>
+  
+<script>
+  const first = 'snickers';
+  const last = 'pappu';
+  const age = 2;
+  const breed = 'king';
+
+  //if property names are same as variables, you can ommit variable
+  const dog = {
+    first, last, age, breed
+  }
+
+  console.table(dog);
+
+  //in method definations now you can leave out function keyword
+  
+  const modalES5 = {
+    create: function(){},
+    open: function(){},
+    close: function(){},
+  }
+
+  const modalES6 = {
+    create(){},
+    open(){},
+    close(){},
+  }
+
+  //another upgrade is comuted property names
+
+  const key = 'pocketColor';
+
+  const value = 'yellow';
+
+  const shirt = {
+    [key]: value,
+    [`${key}Opposite`]: `${value}green`
+  }
+
+  console.log({shirt});
+
+
+const keys = ['size', 'color', 'weight'];
+const values = ['medium', 'red', 100];
+
+const jacket = {
+  [keys.shift()]: values.shift(),
+  [keys.shift()]: values.shift(),
+  [keys.shift()]: values.shift(),
+}
+
+console.log({jacket});
+
+</script>
+</body>
+</html>
