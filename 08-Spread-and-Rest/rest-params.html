@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>...Rest Params</title>
+</head>
+<body>
+<script>
+  // ... also used as Rest operator
+  // ... as spread takes an array or iterable and unpacks it nto multiple items.. 
+  // ... as Rest is exact opposite where it takes multiple things and packs them in array.
+
+  //two common places for ...rest 
+  // 1- function
+  // 2- destructuring
+
+  //function ...rest example
+  //here we could use arguments if we don't know exact number of args, but we want first arg to be rate and REST of other to be amounts.
+  
+  function convertCurrency(rate, ...amounts) {
+    // console.log(rate, amounts);
+    return amounts.map(amount => amount * rate);
+  }
+
+  const amounts = convertCurrency(1.54, 10, 20, 23, 54, 1, 39);
+  console.log({amounts});
+
+  // destructuring example
+  //here ...rest will bundle up every thing after first two elements into an array, because we only want first two as own variables and rest of them are related items.
+
+  const runner = ['Shomail', 123, 5.5, 1.4, 8.3, 9.9];
+  const [runnerName, runnerId, ...runnerMiles] = runner;
+  console.log({runnerName, runnerId, runnerMiles});
+</script>
+</body>
+</html>

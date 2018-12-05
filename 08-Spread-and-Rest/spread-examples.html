@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>...Spread Examples</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+</head>
+<body>
+  <div class="people">
+    <p>Person 1</p>
+    <p>Person 2</p>
+    <p>Person 3</p>
+  </div>
+  <script>
+    // ... operator takes all the items from an iterable (anything you can loop over) and apply it to the containing iterable or array
+
+    //you can also spread strings into arrays
+
+    const featured = ['Deep Dish', 'Pepperoni', 'Hawaiian'];
+    const specialty = ['Meatzza', 'Spicy Mama', 'Margherita'];
+
+    //one way of combining both arrays is to use concat
+    const concatArray = featured.concat(specialty);
+    console.log({concatArray});
+
+    //but if you want to add more items in between concatination ... is the easiest option
+
+    const pizzas = [...featured, 'vegetable', ...specialty];
+    console.log({pizzas});
+
+    //copy an array to a new on old way
+    const copyArray = [].concat(pizzas);
+    console.log({copyArray});
+
+    //easy and readable with ...
+    const fridayPizzas = [...pizzas];
+    console.log({fridayPizzas});
+
+    //you can use it as a replacement for Array.from()
+    
+    const people = [...document.querySelectorAll('.people p')];
+    console.log({people});
+    
+    //create a new array from property of an object it creates a true copy not a reference;
+    
+    const deepDish = {
+      pizzaName: 'Deep Dish',
+      size: 'Medium',
+      ingredients: ['Marinara', 'Italian Sausage', 'Dough', 'Cheese']
+    };
+
+    const shoppingList = ['Milk', 'Flour', ...deepDish.ingredients];
+    console.log({shoppingList});
+
+    //deleteing an object or item from array without mutating it..
+
+    const comments = [
+      { id: 209384, text: 'I love your dog!' },
+      { id: 523423, text: 'Cuuute! 🐐' },
+      { id: 632429, text: 'You are so dumb' },
+      { id: 192834, text: 'Nice work on this!' },
+    ];
+
+    const commentIndex = comments.findIndex(comment => comment.id === 632429);
+
+    const newComments = [
+      ...comments.slice(0, commentIndex),
+      ...comments.slice(commentIndex + 1)
+    ]
+
+    console.log({comments, newComments});
+
+    //one use case is to spread into a function, it will make each array item as single arguments passed down in function
+
+    const inventors = ['Einstein', 'Newton', 'Galileo'];
+    const newInventors = ['Musk', 'Jobs'];
+
+    //es5 way of merging array
+    // inventors.push.apply(inventors, newInventors);
+    
+    //es6, here ... spread is taking the array items and passing it as individual arguments to the .push() method.
+    inventors.push(...newInventors);
+    console.log({inventors});
+
+
+    function sayHi(first, last) {
+      console.log(`Hey there! ${first} ${last} good to see you using spread!`);
+    }
+    const name = ['shomail', 'tahir'];
+    sayHi(...name);
+  </script>
+</body>
+</html>
