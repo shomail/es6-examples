@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Symbols</title>
+</head>
+<body>
+  <script>
+    //existing primitive types in Javascript:
+    //number, string, boolean, undefined, null, object
+    //symbol is the 7th one
+    //they are unique identifiers
+    //help us avoid naming collision
+  //you don't pass a value in Symbol but it's a descriptor
+  //even if two Symbols have same descriptor they are not equal;
+    const sbt = Symbol('sbt');
+    console.log(sbt);
+
+    const person = Symbol('sbt');
+
+    console.log(sbt === person);
+
+    //here we can use Symbol to make unique persons instead of using their names
+    const classRoom = {
+      [Symbol('Mark')]: {score: 50},
+      [Symbol('Olivia')]: {score: 80},
+      [Symbol('Olivia')]: {score: 40},
+    }
+
+    console.log(classRoom);
+
+    //symbols are not enumerable, means not loopable
+    //here for loop ain't gonna work
+    //symbols are good for private data you do not want to appear in loops
+    for (person in classRoom) {
+      console.log(person);
+    }
+    
+    //to access symbol poperties
+    //it will give an array to symbol keys
+    //then we can map over it 
+    const syms = Object.getOwnPropertySymbols(classRoom);
+    const data = syms.map(sym => classRoom[sym]);
+    console.log(data);
+  </script>
+</body>
+</html>
