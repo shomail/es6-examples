@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Generators Ajax</title>
+</head>
+<body>
+<script>
+function ajax(url) {
+  fetch(url).then(data => data.json()).then(data => dataGen.next(data));
+
+}
+
+function* steps() {
+  console.log('fetching beers');
+  const beers = yield ajax('http://api.react.beer/v2/search?q=hops&type=beer');
+  console.log(beers);
+
+  console.log('fetching user');
+  const wes = yield ajax('https://api.github.com/users/wesbos');
+  console.log(wes);
+
+  console.log('fetching artist');
+  const fatJoe = yield ajax('https://api.discogs.com/artists/51988');
+  console.log(fatJoe);
+}
+
+const dataGen = steps();
+
+dataGen.next();
+//on page load we are creating a generator
+//then call it first time to kick it off
+//it will call the first ajax request and yield it 
+//next() in fetch then will save the data in variable inside generator
+//this way we can give new data to generator
+
+</script>
+</body>
+</html>

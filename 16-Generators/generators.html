@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Generators</title>
+</head>
+<body>
+<script>
+//normally js functions run from top to bottm and return
+//generator is a function you can pause and play indefinite amount of time
+//you can get data and give some new information to the function
+//you put a * after function keyword
+//here without yield function didn't execute
+//yield is sort of like return for now
+//return means finish executing rest of the function
+//but with yield it will return an iterator and pause unitl function called again
+//this functions needs to be called 3 times to get all the information
+//to execute function we call next() on the iterator we get from generator
+//it creates closure until not done
+//even after last yield it will run one more time to confirm if there is no more yield or more code to run after the last one;
+
+function* listPeople () {
+  yield 'shomail';
+  console.log('person 1');
+  yield 'bin';
+  console.log('person 2');
+  yield 'tahir';
+  console.log('person 3');
+}
+
+const list = listPeople();
+console.log(list.next());
+console.log(list.next());
+console.log(list.next());
+console.log(list.next());
+
+
+ const inventors = [
+    { first: 'Albert', last: 'Einstein', year: 1879 },
+    { first: 'Isaac', last: 'Newton', year: 1643 },
+    { first: 'Galileo', last: 'Galilei', year: 1564 },
+    { first: 'Marie', last: 'Curie', year: 1867 },
+    { first: 'Johannes', last: 'Kepler', year: 1571 },
+    { first: 'Nicolaus', last: 'Copernicus', year: 1473 },
+    { first: 'Max', last: 'Planck', year: 1858 },
+  ];
+
+  function* loop(arr) {
+    for(const item of arr) {
+      yield item;
+    }
+  }
+
+  const inventorIterator = loop(inventors);
+
+  console.log(inventorIterator.next());
+  console.log(inventorIterator.next());
+  console.log(inventorIterator.next());
+  console.log(inventorIterator.next());
+  console.log(inventorIterator.next());
+  console.log(inventorIterator.next());
+  console.log(inventorIterator.next());
+  console.log(inventorIterator.next());
+  
+
+</script>
+</body>
+</html>
