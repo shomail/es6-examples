@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Weak-Sets</title>
+</head>
+<body>
+<script>
+  //weak set is just a set with some limitations or benifits in some situations
+  //it can only ever contain objects, thats important about them
+  //and you can not loop over it 
+  //and there is no .clear() method on it
+  //rest of the api is same as of set
+
+  let dog1 = {name: "tuffy", age: 3};
+  let dog2 = {name: "polly", age: 5};
+  
+  const weakSauce = new WeakSet([dog1, dog2]);
+
+  //it automatically removes items based on garbage collection feature..
+
+  console.log(weakSauce);
+  dog1 = null;
+  console.log(weakSauce);
+
+</script>
+</body>
+</html>

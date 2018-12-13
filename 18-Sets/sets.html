@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sets</title>
+</head>
+<body>
+<script>
+//set is like a unique array, means you can only add same item once
+//you cant access items individually like arrays
+//its not index based
+//basically a list of items
+
+const people = new Set();
+
+people.add('shomail');
+people.add('wes');
+people.add('sherry');
+
+console.log(people, people.size);
+
+people.delete('wes');
+
+console.log(people, people.size);
+
+//use for of loop to loop over set
+
+for(const person of people) {
+  console.log(person);
+}
+
+//use people.clear() to clear everything
+
+//people.values() gives us a SetIterator;
+
+const peopleIterator = people.values();
+
+console.log(peopleIterator.next());
+
+//people.keys() is same as .values() and gives iterator, because a set is only based on values/...
+
+//people.ectries() is same as .values() and gives iterator, because a set is only based on values/...
+
+//they are useful with maps
+
+const teachersArr = ['andrew', 'top', 'scott'];
+
+const students = new Set(['nicks', 'sasha', 'tom', 'dale']);
+
+const teachers = new Set(teachersArr);
+
+//use .has() to see if a values exists in set
+
+console.log(students.has('sasha'));
+</script>
+</body>
+</html>

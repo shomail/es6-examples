@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sets</title>
+</head>
+<body>
+<script>
+const brunch = new Set();
+//as people start coming in add them to brunch
+brunch.add('wes');
+brunch.add('shomail');
+brunch.add('shasha');
+//ready to open
+const line = brunch.values();
+console.log(line.next().value);
+console.log(line.next().value);
+
+//new people came
+brunch.add('andreas');
+brunch.add('paul');
+//serve next in line
+console.log(line.next().value);
+console.log(line.next().value);
+console.log(line.next().value);
+</script>
+</body>
+</html>
