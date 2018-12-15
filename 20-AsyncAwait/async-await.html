@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Async Await</title>
+  </head>
+  <body>
+    <script>
+      function breath(amount) {
+        return new Promise((resolve, reject) => {
+          if (amount < 500) reject('Value is to small to run');
+          setTimeout(() => {
+            resolve(`Done for ${amount} ms`);
+          }, amount);
+        });
+      }
+
+      //catching errors in async await with higher order function approach
+      function catchErrors(fn) {
+        //here ... is rest
+        return function(...args) {
+          //here we are spreading all args in function with ...
+          return fn(...args).catch(err => {
+            console.error('ERROR!');
+            console.error(err);
+          });
+        };
+      }
+
+      async function go(name) {
+        console.log(`start ${name}`);
+        const res = await breath(1000);
+        console.log(res);
+        const res3 = await breath(400);
+        console.log(res3);
+        const res2 = await breath(500);
+        console.log(res2);
+        console.log('end');
+      }
+
+      const wrapped = catchErrors(go)('timer');
+    </script>
+  </body>
+</html>
