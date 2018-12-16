@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Object Methods</title>
+  </head>
+  <body>
+    <script>
+      const inventory = {
+        bags: 20,
+        shoes: 10,
+        hoodies: 4,
+        jeans: 9
+      };
+
+      //Object.keys() gives us array of keys in object
+      console.log(Object.keys(inventory));
+
+      //Object.values() gives us the array of actual values
+      console.log(Object.values(inventory));
+
+      //Object.entries() gives array of key value pairs
+      console.log(Object.entries(inventory));
+
+      //Make a nav of inventory
+      const nav = Object.keys(inventory)
+        .map(item => `<li>${item}</li>`)
+        .join();
+      console.log(nav);
+
+      //get total nventory we have
+      const total = Object.values(inventory).reduce((acc, item) => acc + item, 0);
+      console.log(total);
+
+      //print inventory list with numbers
+      Object.entries(inventory).forEach(([key, val]) => {
+        console.log(key, val);
+      });
+
+      for (const [key, val] of Object.entries(inventory)) {
+        console.log(key);
+        console.log(val);
+      }
+    </script>
+  </body>
+</html>
